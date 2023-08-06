@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>society predictor</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #0b0808;
+      color: #085b0b;
+
+    }
+
+    h1 {
+      margin-top: 30px;
+      color:rgb(10, 57, 98);
+    }
+
+    form{
+      margin:50px;
+      color:rgb(173, 41, 41);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+   .soc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:40px;
+   }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #0d3195;
+      color: #e0e2ef;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result{
+      font-weight: bold;
+      margin-top: 20px;
+      color: #d42828;
+    }
+
+
+  </style>
+</head>
+<body>
+  <h1>College Club Predictor</h1>
+    <form id="for" >
+        <div class="soc">
+        <label >Q1: What is your field of interest?
+            <br> <br>
+          <input type="radio" name="q1" value="1"> computer science
+          <input type="radio" name="q1" value="100"> literature
+          <input type="radio" name="q1" value="10000"> cultural activities
+        </label>
+    </div>
+        <div class="soc">
+        <label >Q2: How much time you can devote to societies?
+            <br> <br>
+          <input type="radio" name="q2" value="1"> 3hrs/day
+          <input type="radio" name="q2" value="100"> 1hr/day
+          <input type="radio" name="q2" value="10000"> as much as required
+        </label>
+    </div>
+        <div class="soc">
+        <label>Q3: What is your preferred social activity?
+            <br> <br>
+          <input type="radio" name="q3" value="1"> Attending lectures and seminars
+          <input type="radio" name="q3" value="100"> Visiting places with friends
+          <input type="radio" name="q3" value="10000"> Attending cultural events
+        </label>
+    </div>
+        <div class="soc">
+
+        <label>Q4: How do you handle challenges?
+            <br> <br>
+          <input type="radio" name="q4" value="1"> Analyzing and problem-solving
+          <input type="radio" name="q4" value="100"> Seeking creative solutions
+          <input type="radio" name="q4" value="10000"> Taking risks and facing head-on
+        </label>
+    </div>
+        <div class="soc">
+        <label>Q5: What is your leadership style?
+            <br> <br>
+          <input type="radio" name="q5" value="1"> Leading by example and data-driven decisions
+          <input type="radio" name="q5" value="100"> Inspiring and visionary
+          <input type="radio" name="q5" value="10000"> Motivating and empowering
+        </label>
+    </div>
+    <br> <br><br> <br>
+        <button type="button" onclick="predictClub()">Find My society</button>
+      </form>
+
+  <p id="result"></p>
+  <script>
+    function predictClub() {
+      const form = document.getElementById('for');
+      const q1 = parseInt(form.querySelector('input[name="q1"]:checked').value);
+      const q2 = parseInt(form.querySelector('input[name="q2"]:checked').value);
+      const q3 = parseInt(form.querySelector('input[name="q3"]:checked').value);
+      const q4 = parseInt(form.querySelector('input[name="q4"]:checked').value);
+      const q5 = parseInt(form.querySelector('input[name="q5"]:checked').value);
+      const totalScore = q1 + q2 + q3 + q4 + q5;
+      let club;
+
+      if (totalScore >= 5 && totalScore <100) {
+        club = 'CCS SOCIETY';
+      } else if (totalScore >= 100 && totalScore < 10000) {
+        club = 'LITSOC';
+      } else if (totalScore >= 10000 && totalScore < 20000) {
+        club = 'FROSH';
+      }
+      else if(totalScore >=20000 && totalScore<30000) 
+      {
+        club='MUDRA';
+      }
+      else if(totalScore >=30000 && totalScore<40000) 
+      {
+        club='VIRSA';
+      }
+     else if(totalScore >=40000 && totalScore<50000)
+     {
+        club='NOX DANCE SOCIETY';
+     }
+      else {
+        club = 'GIRL UP TIET';
+      }
+
+      document.getElementById('result').textContent = `Recommended Club: ${club}`;
+    }
+  </script>
+</body>
+</html>
